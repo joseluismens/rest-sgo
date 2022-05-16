@@ -10,7 +10,8 @@ const {
   getUsuario,
   login,
   getTicketsPendientes,
-  getTicketsRealizados
+  getTicketsRealizados,
+  getUsuarios
 } = require("../controllers/index.controller");
 
 router.get("/clientes_spa", getClientes_spa);
@@ -22,6 +23,10 @@ router.get("/tickets-realizados/:usuario", getTicketsRealizados);
 router.get("/cliente/:id", getInfoCliente);
 router.get("/tickets/:usuario", getTicketsUsuario);
 router.get("/usuario/:id", getUsuario);
+router.get("/usuarios", getUsuarios);
+router.get("/info-cliente/:id", getInfoCliente);
+
+
 router.post("/login", login);
 
 module.exports = router;

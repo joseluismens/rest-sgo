@@ -22,6 +22,13 @@ const sgochile = new Pool({
     database: 'sgochile',
     port: '5432'
 });
+const sgo2 =  new Pool({
+    user: 'postgres',
+    host: '18.224.41.166',
+    password: 'Hj12JbncBg',
+    database: 'sgo2',
+    port: '5432'
+});
 
 
-module.exports = {controlchile,control,sgochile};
+module.exports = {controlchile,control,sgochile,sgo2};
