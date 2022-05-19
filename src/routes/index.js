@@ -11,7 +11,11 @@ const {
   login,
   getTicketsPendientes,
   getTicketsRealizados,
-  getUsuarios
+  getUsuarios,
+  getUsuariosEmpresa,
+  getMovilesEmpresa,
+  getClientesSuspendidos,
+  crearTicket
 } = require("../controllers/index.controller");
 
 router.get("/clientes_spa", getClientes_spa);
@@ -25,6 +29,12 @@ router.get("/tickets/:usuario", getTicketsUsuario);
 router.get("/usuario/:id", getUsuario);
 router.get("/usuarios", getUsuarios);
 router.get("/info-cliente/:id", getInfoCliente);
+router.get("/datos-acceso/:id", getUsuariosEmpresa);
+router.get("/moviles/:abonado",getMovilesEmpresa);
+router.get("/suspendidos/:codigo_venta",getClientesSuspendidos);
+router.post("/crear-ticket",crearTicket);
+
+
 
 
 router.post("/login", login);

@@ -29,6 +29,26 @@ const sgo2 =  new Pool({
     database: 'sgo2',
     port: '5432'
 });
+const venus =  new Pool({
+    user: 'postgres',
+    host: '18.224.41.166',
+    password: 'Hj12JbncBg',
+    database: 'venus',
+    port: '5432'
+});
+const urano =  new Pool({
+    user: 'postgres',
+    host: '18.224.41.166',
+    password: 'Hj12JbncBg',
+    database: 'urano',
+    port: '5432'
+});
+const saturno =  new Pool({
+    user: 'postgres',
+    host: '18.224.41.166',
+    password: 'Hj12JbncBg',
+    database: 'gruposaesa',
+    port: '5432'
+});
 
-
-module.exports = {controlchile,control,sgochile,sgo2};
+module.exports = {controlchile,control,sgochile,sgo2,venus,saturno,urano};
