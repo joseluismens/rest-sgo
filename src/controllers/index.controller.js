@@ -78,7 +78,7 @@ const getInfoCliente = async (req, res) => {
   res.status(200).json(info.rows[0]);
 };
 const getTicketsUsuario = async (req, res) => {
-  const usuario = req.paramas.abonado;
+  const usuario = req.params.abonado;
 
   const tickets = await control.query("SELECT * FROM tickets ");
   res.status(200).json(tickets.rows);
@@ -290,6 +290,40 @@ const crearTicket = async (req,res)=>{
 
   }
 }
+
+const actualizarTicket  = async (req,res)=>{
+
+
+  const {id_ticket,texto,abonado,estado} = req.body;
+
+  if (abonado >=3000) {
+      actualizar = await controlchile.query("UPDATE tickets SET estado =$1,texto=$2 WHERE id_ticket=$3 and codigo_abonado=$4",[estado,texto,id_ticket,abonado]);
+  }else{
+      actualizar = await control.query("UPDATE tickets SET estado =$1,texto=$2 WHERE id_ticket=$3 and codigo_abonado=$4",[estado,texto,id_ticket,abonado]);
+
+  }
+  if (actualizar.rowCount>0) {
+    return res.status(200).json({ "error":false   });
+    
+  }else{
+    return res.status(200).json({ "error":true   });
+
+  }
+  console.log(actualizar);
+}
+const events = async (req,res)=>{
+  const {usuario} = req.params;
+  console.log(usuario);
+  let events  = await sgochile.query("select * from events where event_for=$1 and event_type=$2",[usuario,"task"]);
+  console.log(events.rows);
+  if (events.rowCount>0) {
+    res.status(200).json({"tareas":events.rows});
+    
+  }else{
+    res.status(200).json({"message":"not found"});
+
+  }
+}
 module.exports = {
   getClientes_spa,
   getClientes_control,
@@ -305,5 +339,7 @@ module.exports = {
   getUsuariosEmpresa,
   getMovilesEmpresa,
   getClientesSuspendidos,
-  crearTicket
+  crearTicket,
+  events,
+  actualizarTicket
 };
